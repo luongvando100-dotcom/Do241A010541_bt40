@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng Hợp Bài Tập - Lương Văn Đô (241A010541)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        .student-info {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #ffd700;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+        }
+        .btn:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .btn-game {
+            background: #ff5722;
+            color: #fff;
+        }
+        .btn-game:hover {
+            background: #e64a19;
+            color: #fff;
+        }
+
+        /* Khung nội dung (Mặc định HIDE/ẨN đi) */
+        .content-section {
+            display: none; 
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: #00ffff;
+        }
+
+        /* Frame nhúng Mini Game Bài 40 */
+        iframe {
+            width: 100%;
+            height: 480px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Hiệu ứng Đèn Kéo Quân 3D */
+        .scene {
+            width: 220px;
+            height: 260px;
+            perspective: 1000px;
+            margin: 15px auto;
+        }
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 15s linear infinite;
+        }
+        .scene:hover .carousel {
+            animation-play-state: paused;
+        }
+        .carousel__face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            left: 35px;
+            top: 50px;
+            border: 3px solid #ffd700;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: #fff;
+        }
+        .carousel__face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel__face:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
+        .carousel__face:nth-child(2) { transform: rotateY(60deg) translateZ(220px); }
+        .carousel__face:nth-child(3) { transform: rotateY(120deg) translateZ(220px); }
+        .carousel__face:nth-child(4) { transform: rotateY(180deg) translateZ(220px); }
+        .carousel__face:nth-child(5) { transform: rotateY(240deg) translateZ(220px); }
+        .carousel__face:nth-child(6) { transform: rotateY(300deg) translateZ(220px); }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(-360deg); }
+        }
+
+        .note-text {
+            font-size: 0.9rem;
+            color: #ffeb3b;
+            margin-top: 10px;
+        }
+
+        /* Ảnh Kết quả bài 38 */
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TỔNG HỢP BÀI TẬP WEB</h1>
+        <div class="student-info">
+            <p><strong>Họ và tên:</strong> Lương Văn Đô &nbsp;|&nbsp; <strong>MSSV:</strong> 241A010541</p>
+        </div>
+
+        <div class="nav-links">
+            <!-- Nút 1: Bấm vào hiện ngay Mini Game Bài 40 bên dưới (Không mở tab mới) -->
+            <button class="btn btn-game" onclick="showSection('game-section')">🎮 Chơi Mini Game Hứng Táo (Bài 40)</button>
+            
+            <!-- Nút 2: Bấm vào hiện Bài 39 -->
+            <button class="btn" onclick="showSection('bai39-section')">🏮 Đèn Kéo Quân (Bài 39)</button>
+            
+            <!-- Nút 3: Bấm vào hiện Bài 38 -->
+            <button class="btn" onclick="showSection('bai38-section')">📝 Kết Quả Bài 38</button>
+        </div>
+
+        <!-- BÀI TẬP 40: MINI GAME (Nhúng file game.html vào trang) -->
+        <div id="game-section" class="content-section">
+            <h2>BÀI TẬP 40 - MINI GAME HỨNG TÁO</h2>
+            <iframe src="game.html" title="Mini Game Hứng Táo"></iframe>
+        </div>
+
+        <!-- BÀI TẬP 39: ĐÈN KÉO QUÂN (Mặc định ẩn) -->
+        <div id="bai39-section" class="content-section">
+            <h2>BÀI TẬP 39 - ĐÈN KÉO QUÂN (Hiệu ứng 3D JavaScript)</h2>
+            <div class="scene">
+                <div class="carousel">
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1015/300/300" alt="Ảnh 1"></div>
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1025/300/300" alt="Ảnh 2"></div>
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1035/300/300" alt="Ảnh 3"></div>
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1045/300/300" alt="Ảnh 4"></div>
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1055/300/300" alt="Ảnh 5"></div>
+                    <div class="carousel__face"><img src="https://picsum.photos/id/1065/300/300" alt="Ảnh 6"></div>
+                </div>
+            </div>
+            <p class="note-text">💡 <i>Rê chuột vào đèn để dừng lại - Rê chuột ra để tiếp tục quay</i></p>
+        </div>
+
+        <!-- BÀI TẬP 38: KẾT QUẢ TRẮC NGHIỆM (Mặc định ẩn) -->
+        <div id="bai38-section" class="content-section">
+            <h2>BÀI TẬP 38 - KẾT QUẢ TRẮC NGHIỆM HTML, CSS & JS</h2>
+            <div class="img-container">
+                <img src="ketqua_bt38.png" alt="Kết quả Bài tập 38 - Lương Văn Đô">
+            </div>
+        </div>
+    </div>
+
+    <!-- Đoạn mã JS xử lý ẩn/hiện nội dung khi bấm nút -->
+    <script>
+        function showSection(sectionId) {
+            // Ẩn tất cả các phần nội dung
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(sec) {
+                sec.style.display = 'none';
+            });
+
+            // Hiện đúng phần được chọn
+            var targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
